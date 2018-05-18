@@ -7,6 +7,12 @@ Contained in this docker image:
 * [rancher-compose cli (no maintain by RancherLabs)](https://github.com/rancher/rancher-compose)
 * A Python CLI tool for Rancher's API [rancher.py](rancher.py)
 
+## Improvement
+
+* Add rancher cli and rancher-compose cli into this docker images, so you needn't reinvent the wheel.
+* Support [rancher environments](https://rancher.com/docs/rancher/v1.6/en/), because duplicate service or stack names are possible across rancher environments
+* New commands for health check and blue-green deployment (still working on)
+
 ## Work with docker 
 
 ```
@@ -129,11 +135,20 @@ Retrieves the stack ID of a stack given its name.
 
 ### service_id
 
-Retrieves the ID of a service given its name.
+Retrieves the ID of a service given its name, need stack name with it.
 
 ```
- $ ./rancher.py service_id cassandra
+ $ ./rancher.py service_id stack_name/cassandra
 1s130
+```
+
+### service_health
+
+Retrieves the ID of a service given its name, need stack name with it
+
+```
+ $ ./rancher.py service_health stack_name/cassandra
+healthy
 ```
 
 ### env_id
