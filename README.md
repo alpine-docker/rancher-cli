@@ -1,7 +1,39 @@
-Gaucho
+Toolsets for Rancher's API
 ===========================================
 
-Gaucho is simply some Python scripts to access the
+Contained in this docker image:
+
+* [rancher-cli](https://github.com/rancher/cli)
+* [rancher-compose cli (no maintain by RancherLabs)](https://github.com/rancher/rancher-compose)
+* A Python CLI tool for Rancher's API [rancher.py](rancher.py)
+
+## Work with docker 
+
+```
+alias rancher-cli="docker run --rm -it -e RANCHER_URL=$RANCHER_URL -e RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY -e RANCHER_ACCESS_KEY=$RANCHER_ACCESS_KEY -e RANCHER_ENVIRONMENT=dev alpine/rancher-cli:1.0
+```
+
+## Usage
+
+### rancher cli
+
+Make sure you have set the alias.
+
+```
+rancher-cli rancher --help
+```
+
+### rancher-compose cli
+
+Make sure you have set the alias.
+
+```
+rancher-cli rancher-compose --help
+```
+
+### python script `rancher.py`
+
+`rancher.py` is simply some Python scripts to access the
 [Rancher](https://github.com/rancher/rancher)'s API to perform tasks which
 I need to have executed through my deployment workflow.
 
@@ -10,26 +42,32 @@ requirements.
 
 Contributions are welcome if you want to use it and add to it.
 
-## Usage
-
-Gaucho can be run directly on a command line provided you have Python installed
+`rancher.py` can be run directly on a command line provided you have Python installed
 as well as the dependencies listed below.
+
+```
+pip install -r requirements.txt
+./rancher.py query
+```
 
 It can also be run as a Docker container:
 
+Make sure you have set the alias.
+
 ```
-docker run --rm -it etlweather/gaucho query 1s245
+rancher-cli rancher.py query 1s245
 ```
 
-### Rancher Host, Access Key and Secret
+### Rancher Host, Access Key, Secret and Environment
 
 Gaucho needs to know the Rancher host and must be given an access key and access
 secret to be able to interact with the Rancher's API. This can be done through
 environment variables:
 
-   - `CATTLE_ACCESS_KEY`
-   - `CATTLE_SECRET_KEY`
-   - `CATTLE_URL`
+   - `RANCHER_ACCESS_KEY`
+   - `RANCHER_SECRET_KEY`
+   - `RANCHER_URL`
+   - `RANCHER_ENVIRONMENT`
 
 #### SSL Validation
 
@@ -74,20 +112,28 @@ Options:
    --service_id  The ID of the service to read (optional)
 ```
 
-### id_of
+### stack_id
+
+Retrieves the stack ID of a stack given its name.
+
+```
+ $ ./rancher.py stack_id project1
+1s97
+```
+
+### service_id
 
 Retrieves the ID of a service given its name.
 
 ```
- $ ./services.py id_of cassandra
+ $ ./rancher.py service_id cassandra
 1s130
- $
 ```
 
-### id_of_env
+### env_id
 
 ```
-Usage: ./gaucho id_of_env <environment_name>
+Usage: ./rancher.py env_id dev
 
 Retrieves the ID of a environment given its name.
 
