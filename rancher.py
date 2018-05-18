@@ -98,7 +98,7 @@ def stack_id(stack_name=""):
 #
 @baker.command(
     params={
-        "name": "The name of the service to lookup.",
+        "name": "The name of the service to lookup, example: project1/nginx.",
         "newest": "From list of IDs, return newest (optional)"
     })
 def service_id(name="", newest=False):
@@ -108,7 +108,7 @@ def service_id(name="", newest=False):
     if "/" in name:
         stack_name, service_name = name.split("/")
     else:
-        print "Usage: rancher.py service_id o2a/atlas"
+        print "Usage: rancher.py service_id --help"
         quit()
 
     stackId = stack_id(stack_name)
