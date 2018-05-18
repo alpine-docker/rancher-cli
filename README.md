@@ -10,7 +10,7 @@ Contained in this docker image:
 ## Work with docker 
 
 ```
-alias rancher-cli="docker run --rm -it -e RANCHER_URL=$RANCHER_URL -e RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY -e RANCHER_ACCESS_KEY=$RANCHER_ACCESS_KEY -e RANCHER_ENVIRONMENT=dev alpine/rancher-cli:1.0
+alias rancher-cli="docker run --rm -it -e RANCHER_URL=$RANCHER_URL -e RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY -e RANCHER_ACCESS_KEY=$RANCHER_ACCESS_KEY -e RANCHER_ENVIRONMENT=dev alpine/rancher-cli:1.0"
 ```
 
 ## Usage
