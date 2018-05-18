@@ -13,6 +13,12 @@ Contained in this docker image:
 alias rancher-cli="docker run --rm -it -e RANCHER_URL=$RANCHER_URL -e RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY -e RANCHER_ACCESS_KEY=$RANCHER_ACCESS_KEY -e RANCHER_ENVIRONMENT=dev alpine/rancher-cli:1.0"
 ```
 
+If you work environment behinds corporate proxy,
+
+```
+alias rancher-cli="docker run --rm -it -e RANCHER_URL=$RANCHER_URL -e RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY -e RANCHER_ACCESS_KEY=$RANCHER_ACCESS_KEY -e RANCHER_ENVIRONMENT=dev -e http_proxy="http://192.168.65.2:3128" -e https_proxy="http://192.168.65.2:3218" alpine/rancher-cli:1.0"
+```
+
 ## Usage
 
 ### rancher cli
